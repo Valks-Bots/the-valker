@@ -41,7 +41,7 @@ const commands = {
 
 client.on('guildMemberAdd', (member) => {
 	var guild = client.guilds.get("328739848615624706");
-	for (const role of guild.roles.values())){
+	for (const role of guild.roles.values()){
 		if (role.id === "329053795080339456"){
 			member.addRole(role.id);
 		}
