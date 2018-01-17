@@ -30,6 +30,10 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if (isCmd(msg)){
+		if (msg.channel.id === "402276815709798400"){
+			msg.channel.send('', embedded(`**${msg.author.tag}** please use any commands in #bots-commands-music`));
+			return;
+		}
 		console.log(msg.content);
 		//msg.delete(1000);
 		let cmd = msg.content.toLowerCase().slice(tokens.prefix.length).split(' ')[0];
