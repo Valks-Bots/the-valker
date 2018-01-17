@@ -39,6 +39,15 @@ const commands = {
 	}
 }
 
+client.on('guildMemberAdd', (member) => {
+	var guild = client.guilds.get("328739848615624706");
+	for (const role of guild.roles.values())){
+		if (role.id === "329053795080339456"){
+			member.addRole(role.id);
+		}
+	}
+});
+
 client.on('presenceUpdate', (oldMember, newMember) => {
 	if (newMember.presence.game != null){
 		if (newMember.presence.game.streaming){
