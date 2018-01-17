@@ -101,7 +101,7 @@ client.on('message', msg => {
 					count++;
 				}
 				
-				if (counter > 1){
+				if (count > 1){
 					msg.delete();
 					msg.channel.send('', embedded(`**${msg.author.tag}** please send no more than one message here`)).then(m => {m.delete(5000)});
 					break;
