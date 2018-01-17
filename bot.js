@@ -12,6 +12,22 @@ const commands = {
 		let id = 402138100031029248;
 		let permissions = 8;
 		msg.channel.send('', embedded(`https://discordapp.com/api/oauth2/authorize?client_id=${id}&scope=bot&permissions=${permissions}`));
+	},
+	'role': (msg) => {
+		var args = msg.content.toLowerCase().split(' ').slice(1)[0];
+		if (args === undefined){
+			return msg.channel.send('', embedded('Specify a valid role..');
+		}
+		
+		if (args === 'streamer'){
+			var guild = client.guilds.get("328739848615624706");
+			var member = guild.members.get(msg.author.id);
+			for (const role of guild.roles.values()){
+				if (role.id === "401517820434972673"){
+					member.addRole(role.id);
+				}
+			}
+		}
 	}
 }
 
