@@ -18,7 +18,7 @@ const commands = {
 client.on('presenceUpdate', (oldMember, newMember) => {
 	if (newMember.presence.game != null){
 		if (newMember.presence.game.streaming){
-			client.channels.get(im_live).send(`**${newMember.user.tag}** is now streaming at <${newMember.presence.game.url}>`);
+			client.channels.get(im_live).send('', embedded(`**${newMember.user.tag}** is now streaming at <${newMember.presence.game.url}>`));
 		}
 	}
 });
@@ -31,7 +31,8 @@ client.on('ready', () => {
 client.on('message', msg => {
   if (isCmd(msg)){
 		if (msg.channel.id === "402276815709798400"){
-			msg.channel.send('', embedded(`**${msg.author.tag}** please use any commands in #bots-commands-music`));
+			msg.delete();
+			msg.channel.send(`**${msg.author.tag}** please use commands in #bots-commands-music`);
 			return;
 		}
 		console.log(msg.content);
@@ -66,7 +67,8 @@ function createTable(id){
 function embedded(str){
 	var object = {
 		embed:{
-			description: str
+			description: str,
+			color: FFC0CB
 		}
 	};
 	return object;
