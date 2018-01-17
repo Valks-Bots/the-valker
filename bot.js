@@ -5,6 +5,20 @@ const tokens = require("./tokens.json");
 const im_live = "401517959652311045";
 
 const commands = {
+	'clear': (msg) => {
+		try {
+			if (msg.author.id !== tokens.owner){
+				return;
+			}
+			var args = msg.content.toLowerCase().split(' ').slice(1)[0];
+			msg.channel.bulkDelete(args).then(messages => {
+				console.log(`Bulk deleted ${messages.size} messages`}
+			)).catch(console.error);
+		}
+		catch(err) {
+			msg.channel.send(err.message);
+		}
+	},
 	'ping': (msg) => {
 		msg.channel.send('', embedded("Hello world!"));
 	},
