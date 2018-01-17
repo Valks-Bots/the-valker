@@ -93,6 +93,7 @@ client.on('message', msg => {
 	
 	if (msg.channel.id === "401269575670562826"){
 		var channel = client.channels.get("401269575670562826");
+		var count = 0;
 		
 		channel.fetchMessages({limit: 100}).then(messages => {
 			for (const message of messages.values()){
