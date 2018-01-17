@@ -1,0 +1,1 @@
+Temporary bot for a Twitch discord for learning purposes.
