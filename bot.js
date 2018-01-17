@@ -11,7 +11,7 @@ const commands = {
 				return;
 			}
 			var args = msg.content.toLowerCase().split(' ').slice(1)[0];
-			msg.channel.bulkDelete(args+1).then(messages =>	console.log(`Bulk deleted ${messages.size} messages`)).catch(console.error);
+			msg.channel.bulkDelete(parseInt(args)+1).then(messages =>	console.log(`Bulk deleted ${messages.size} messages`)).catch(console.error);
 		}
 		catch(err) {
 			msg.channel.send(err.message);
