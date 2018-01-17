@@ -11,7 +11,7 @@ const commands = {
 				return;
 			}
 			var args = msg.content.toLowerCase().split(' ').slice(1)[0];
-			msg.channel.bulkDelete(args).then(messages =>	console.log(`Bulk deleted ${messages.size} messages`)).catch(console.error);
+			msg.channel.bulkDelete(args+1).then(messages =>	console.log(`Bulk deleted ${messages.size} messages`)).catch(console.error);
 		}
 		catch(err) {
 			msg.channel.send(err.message);
@@ -65,7 +65,16 @@ client.on('guildMemberAdd', (member) => {
 client.on('presenceUpdate', (oldMember, newMember) => {
 	if (newMember.presence.game != null){
 		if (newMember.presence.game.streaming){
-			client.channels.get(im_live).send('', embedded(`**${newMember.user.tag}** is now streaming at <${newMember.presence.game.url}>`));
+			var channel = client.channels.get(im_live);
+			channel.fetchMessages({limit: 2}).then(messages => {
+				for (var i = 0; i < messages.size; i++){
+					if (messages.size > 1){
+						if (messages[size].content !== messages[size-1].content){
+							channel.send('', embedded(`**${newMember.user.tag}** is now streaming at <${newMember.presence.game.url}>`));
+						}
+					}
+				}
+			});
 		}
 	}
 });
