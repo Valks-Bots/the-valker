@@ -65,7 +65,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if (isCmd(msg)){
-		if (msg.channel.id === "402276815709798400"){
+		if (msg.channel.id === "402276815709798400" || msg.channel.id === "402959473909432332" || msg.channel.id === "402716436193345536"){
 			msg.delete();
 			msg.channel.send('', embedded(`**${msg.author.tag}** please use commands in #bots-commands-music`)).then(m => {m.delete(5000)});
 			client.channels.get("402855128631345163").send('', embedded(`:warning: **${msg.author.tag}** used commands in the #furry-lounge.`));
