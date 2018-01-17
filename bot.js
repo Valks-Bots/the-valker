@@ -65,7 +65,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if (isCmd(msg)){
-		if (msg.channel.id === "402276815709798400" || msg.channel.id === "402959473909432332" || msg.channel.id === "402716436193345536"){
+		if (msg.channel.id !== "401271379862749184"){
 			msg.delete();
 			msg.channel.send('', embedded(`**${msg.author.tag}** please use commands in #bots-commands-music`)).then(m => {m.delete(5000)});
 			client.channels.get("402855128631345163").send('', embedded(`:warning: **${msg.author.tag}** used commands in the #furry-lounge.`));
@@ -91,8 +91,27 @@ client.on('message', msg => {
 		}
 	}
 	
-	if (msg.channel.id === "401269575670562826" || msg.channel.id === "401906665659695104"){
+	if (msg.channel.id === "401269575670562826"){
 		var channel = client.channels.get("401269575670562826");
+		var count = 0;
+		
+		channel.fetchMessages({limit: 100}).then(messages => {
+			for (const message of messages.values()){
+				if (message.author === msg.author){
+					count++;
+				}
+				
+				if (count > 1){
+					msg.delete();
+					msg.channel.send('', embedded(`**${msg.author.tag}** please send no more than one message here. Instead edit your previous message.`)).then(m => {m.delete(5000)});
+					break;
+				}
+			}
+		});
+	}
+	
+	if (msg.channel.id === "401906665659695104"){
+		var channel = client.channels.get("401906665659695104");
 		var count = 0;
 		
 		channel.fetchMessages({limit: 100}).then(messages => {
