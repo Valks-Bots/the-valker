@@ -69,7 +69,7 @@ function embedded(str){
 	var object = {
 		embed:{
 			description: str,
-			color: FFC0CB
+			color: 0xffc4f9
 		}
 	};
 	return object;
