@@ -51,7 +51,7 @@ client.on('message', msg => {
 	}
 });
 
-client.login(tokens.token);
+client.login(process.env.BOT_TOKEN);
 
 function createTable(id){
 	sql.run('CREATE TABLE IF NOT EXISTS settings (guildid TEXT, streaming BIT)').then(() => {
