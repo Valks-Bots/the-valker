@@ -16,15 +16,23 @@ const commands = {
 	'role': (msg) => {
 		var args = msg.content.toLowerCase().split(' ').slice(1)[0];
 		if (args === undefined){
-			return msg.channel.send('', embedded('Specify a valid role..');
+			return msg.channel.send('', embedded('Specify a valid role..'));
 		}
 		
 		if (args === 'streamer'){
 			var guild = client.guilds.get("328739848615624706");
 			var member = guild.members.get(msg.author.id);
+			for (const role of member.roles.values()){
+				if (role.id === "401517820434972673"){
+					msg.channel.send('', embedded(`**${msg.author.tag}** you already have the streamer role.`));
+					return;
+				}
+			}
 			for (const role of guild.roles.values()){
 				if (role.id === "401517820434972673"){
 					member.addRole(role.id);
+					msg.channel.send('', embedded(`**${msg.author.tag}** you now have streamer role.`));
+					break;
 				}
 			}
 		}
