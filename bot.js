@@ -67,6 +67,8 @@ client.on('presenceUpdate', (oldMember, newMember) => {
 		if (newMember.presence.game.streaming){
 			var channel = client.channels.get(im_live);
 			channel.fetchMessages({limit: 2}).then(messages => {
+				console.log(messages[size].content);
+				console.log(messages[size-1].content);
 				for (var i = 0; i < messages.size; i++){
 					if (messages.size > 1){
 						if (messages[size].content !== messages[size-1].content){
