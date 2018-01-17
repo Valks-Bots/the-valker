@@ -103,7 +103,7 @@ client.on('message', msg => {
 				
 				if (count > 1){
 					msg.delete();
-					msg.channel.send('', embedded(`**${msg.author.tag}** please send no more than one message here`)).then(m => {m.delete(5000)});
+					msg.channel.send('', embedded(`**${msg.author.tag}** please send no more than one message here. Instead edit your previous message.`)).then(m => {m.delete(5000)});
 					break;
 				}
 			}
