@@ -46,6 +46,8 @@ client.on('guildMemberAdd', (member) => {
 			member.addRole(role.id);
 		}
 	}
+	
+	client.channels.get("390540275279331338").send('', embedded(`**${member.user.tag}** has joined Furry Streamers`));
 });
 
 client.on('presenceUpdate', (oldMember, newMember) => {
