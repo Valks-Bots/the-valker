@@ -77,7 +77,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if (isCmd(msg)){
-		if (msg.channel.id !== "401271379862749184"){
+		if (msg.channel.id !== "401271379862749184" && !msg.content.includes(`${tokens.prefix}clear`)){
 			msg.delete();
 			msg.channel.send('', embedded(`**${msg.author.tag}** please use commands in #bots-commands-music`)).then(m => {m.delete(5000)});
 			client.channels.get("402855128631345163").send('', embedded(`:warning: **${msg.author.tag}** used commands in the wrong place.`));
