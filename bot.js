@@ -92,18 +92,21 @@ client.on('message', msg => {
 	}
 	
 	if (msg.channel.id === "401269575670562826"){
-		var messages = client.channels.get("401269575670562826").messages;
-		var count = 0;
-		for (const message of messages.values()){
-			if (message.author === msg.author){
-				count++;
+		var channel = client.channels.get("401269575670562826");
+		
+		channel.fetchMessages({limit: 100}).then(messages => {
+			for (const message of messages.values()){
+				if (message.author === msg.author){
+					count++;
+				}
+				
+				if (counter > 1){
+					msg.delete();
+					msg.channel.send('', embedded(`**${msg.author.tag}** please send no more than one message here`)).then(m => {m.delete(5000)});
+					break;
+				}
 			}
-			if (count > 1){
-				msg.delete();
-				msg.channel.send('', embedded(`**${msg.author.tag}** please send no more than one message here`)).then(m => {m.delete(5000)});
-				break;
-			}
-		}
+		});
 	}
 });
 
