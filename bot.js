@@ -91,7 +91,7 @@ client.on('message', msg => {
 		}
 	}
 	
-	if (msg.channel.id === "401269575670562826"){
+	if (msg.channel.id === "401269575670562826" || msg.channel.id === "401906665659695104"){
 		var channel = client.channels.get("401269575670562826");
 		var count = 0;
 		
