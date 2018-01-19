@@ -102,14 +102,14 @@ client.on('message', msg => {
 		}
 	}
 	
-	if (msg.channel.id === im_live){
-		if (msg.content.includes("twitch.tv")){
-			var emotes = client.guilds.get("328739848615624706").emojis;
-			for (const emote of emotes.values()){
-				if (emote.name.includes("letsGo")){
-					msg.react(emote.id);
-					break;
-				}
+	if (msg.content.includes("twitch.tv")){
+		var emotes = client.guilds.get("328739848615624706").emojis;
+		for (const emote of emotes.values()){
+			if (emote.name.includes("TehePelo")){
+				msg.react(emote.id);
+			}
+			if (emote.name.includes("letsGo")){
+				msg.react(emote.id);
 			}
 		}
 	}
