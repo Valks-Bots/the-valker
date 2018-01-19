@@ -18,7 +18,7 @@ const commands = {
 		}
 	},
 	'ping': (msg) => {
-		msg.channel.send('', embedded("Hello world!"));
+		msg.channel.send("**Consult a staff member for the raider role.**\n\n :letsGo: :letsGo: :letsGo: :letsGo: :letsGo: :letsGo: :letsGo: :letsGo: :letsGo: :letsGo: :letsGo: :letsGo: ");
 	},
 	'invite': (msg) => {
 		let id = 402138100031029248;
