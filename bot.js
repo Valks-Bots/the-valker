@@ -60,6 +60,53 @@ client.on('guildMemberAdd', (member) => {
 	}
 	
 	client.channels.get("390540275279331338").send('', embedded(`**${member.user.tag}** has joined Furry Streamers`));
+	
+	//INVITES===================================================//
+	
+	member.guild.fetchInvites().then(invites => {
+		let leaderboard = [];
+		for (const invite of invites.values()){
+			if (invite.inviter != undefined && invite.uses !== 0 && !invite.temporary){
+				leaderboard.push({inviter: invite.inviter.tag, invites: invite.uses});
+			}
+		}
+		
+		for (let a = 0; a < 30; a++){
+			for (let i = 1; i < leaderboard.length; i++){
+				if (leaderboard[i].invites > leaderboard[i - 1].invites){
+					const higher = leaderboard[i];
+					leaderboard[i] = leaderboard[i - 1];
+					leaderboard[i - 1] = higher;
+				}
+			}
+		}
+		
+		let message = '**Total Invites ~ Top 10** *(Only permanent invites are tracked.)*\n\n';
+		let emote = ':star2:';
+		for (let i = 0; i < leaderboard.length; i++){
+			if (i > 10) {
+				break;
+			}
+			if (i+1 != 1) emote = ':star:';
+			message+=`${emote} **${i+1}. ${leaderboard[i].inviter}** \`${leaderboard[i].invites}\`\n`;
+		}
+		
+		message += `\n*Latest Member:* ${member.user}`;
+		
+		var edited = false;
+		member.guild.channels.get("404115290520158208").fetchMessages({limit: 100}).then(messages => {
+			for (const message of messages){
+				if (message.author.id === client.user.id){
+					message.edit(message);
+					edited = true;
+					break;
+				}
+			}
+			if (!edited){
+				member.guild.channels.get("404115290520158208").send(message);
+			}
+		});
+	});
 });
 
 client.on('presenceUpdate', (oldMember, newMember) => {
