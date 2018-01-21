@@ -95,15 +95,13 @@ client.on('guildMemberAdd', (member) => {
 		
 		let edited = false;
 		member.guild.channels.get("404115290520158208").fetchMessages({limit: 100}).then(msgs => {
-			for (const message of msgs){
-				if (message.author !== undefined){
-					if (message.author.id === client.user.id){
-						message.edit(msglead);
-						edited = true;
-						break;
-					}
+			msgs.find(m => {
+				if (m.author.id === client.user.id){
+					m.edit(msglead);
+					edited = true;
 				}
-			}
+			});
+			
 			if (!edited){
 				member.guild.channels.get("404115290520158208").send(msglead);
 			}
