@@ -96,10 +96,12 @@ client.on('guildMemberAdd', (member) => {
 		var edited = false;
 		member.guild.channels.get("404115290520158208").fetchMessages({limit: 100}).then(messages => {
 			for (const message of messages){
-				if (message.author.id === client.user.id){
-					message.edit(message);
-					edited = true;
-					break;
+				if (message.author !== undefined){
+					if (message.author.id === client.user.id){
+						message.edit(message);
+						edited = true;
+						break;
+					}
 				}
 			}
 			if (!edited){
