@@ -94,8 +94,8 @@ client.on('guildMemberAdd', (member) => {
 		message += `\n*Latest Member:* ${member.user}`;
 		
 		var edited = false;
-		member.guild.channels.get("404115290520158208").fetchMessages({limit: 100}).then(messages => {
-			for (const message of messages){
+		member.guild.channels.get("404115290520158208").fetchMessages({limit: 100}).then(msgs => {
+			for (const message of msgs){
 				if (message.author !== undefined){
 					if (message.author.id === client.user.id){
 						message.edit(message);
